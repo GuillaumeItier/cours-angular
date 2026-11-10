@@ -1,0 +1,104 @@
+<div class="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+  <!-- En-tête de la page -->
+  <div class="mb-8 border-b border-base-300 pb-6">
+    <!-- À remplacer par : courseTitle -->
+    <h1 class="text-3xl font-bold text-primary sm:text-4xl">Exercice : Interpolation de texte</h1>
+    <p class="mt-2 text-base-content/80">
+      Affichage de variables de différents types avec la syntaxe
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <!-- 1. Types primitifs -->
+    <section class="card border border-base-300 bg-base-100 shadow-md" aria-labelledby="titre-primitifs">
+      <div class="card-body">
+        <h2 id="titre-primitifs" class="card-title text-lg">1. Types primitifs</h2>
+        <div class="divider mt-0 mb-2"></div>
+
+        <dl class="space-y-4">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <dt class="font-semibold">Note maximale :</dt>
+            <dd>
+              <span class="badge badge-neutral badge-lg">{{maxScore}}
+                <span aria-hidden="true">&nbsp;/&nbsp;</span><span class="sr-only"> sur </span> 20
+              </span>
+            </dd>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <dt class="font-semibold">Score actuel :</dt>
+            <dd>
+              <span class="badge badge-primary badge-lg">
+                {{currentScore}}<span aria-hidden="true">&nbsp;/&nbsp;</span><span class="sr-only"> sur </span> 20
+              </span>
+            </dd>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <dt class="font-semibold">Pourcentage :</dt>
+            <dd>
+              <span class="badge badge-secondary badge-lg font-mono">{{ (currentScore / maxScore) * 100 }} %</span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 2. Objet & méthode -->
+    <section class="card border border-base-300 bg-base-100 shadow-md" aria-labelledby="titre-objet">
+      <div class="card-body">
+        <h2 id="titre-objet" class="card-title text-lg">2. Objet &amp; Méthode</h2>
+        <div class="divider mt-0 mb-2"></div>
+
+        <dl class="space-y-4">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <dt class="font-semibold">Rôle :</dt>
+            <dd>{{user.role}}</dd>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <dt class="font-semibold">Nom complet (méthode) :</dt>
+            <dd class="font-bold">{{user.firstName}} {{user.lastName}}</dd>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <dt class="font-semibold">Statut :</dt>
+            <dd>
+              <span class="badge badge-error badge-lg">{{ isLoggedIn ? 'Connecté' : 'Déconnecté' }}</span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 3. Tableaux -->
+    <section
+      class="card border border-base-300 bg-base-100 shadow-md md:col-span-2"
+      aria-labelledby="titre-tableaux"
+    >
+      <div class="card-body">
+        <h2 id="titre-tableaux" class="card-title text-lg">3. Tableaux (Array)</h2>
+        <div class="divider mt-0 mb-2"></div>
+
+        <dl class="space-y-4">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <dt class="font-semibold">Première compétence (skills[0]) :</dt>
+            <dd>
+              <span class="badge badge-accent badge-lg">{{skills[0]}}</span>
+            </dd>
+          </div>
+
+          <div class="space-y-2">
+            <dt class="font-semibold">Toutes les compétences (.join) :</dt>
+            <!-- À remplacer par : skills.join(' • ') -->
+            <dd>
+              <code class="block overflow-x-auto rounded-box bg-base-200 p-3 text-sm">
+                {{skills.join(' - ')}}
+              </code>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </div>
+</div>

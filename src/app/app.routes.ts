@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { About } from './pages/about/about';
 import { TextInterpolationLesson } from './pages/lessons/text-interpolation-lesson/text-interpolation-lesson';
 import { AttributesBindingLesson } from './pages/lessons/attributes-binding-lesson/attributes-binding-lesson';
-
+import { TextInterpolationExercice } from './pages/exercices/text-interpolation-exercice/text-interpolation-exercice';
 export const routes: Routes = [
   //! Route pour la page À propos (classique)
   { path: 'about', component: About },
@@ -18,5 +18,6 @@ export const routes: Routes = [
   },
   { path: 'text-interpolation-lesson', component: TextInterpolationLesson },
   { path: 'attributes-binding-lesson', component: AttributesBindingLesson },
+  { path: 'text-interpolation-exercice', component: TextInterpolationExercice },
   
 ];
