@@ -1,0 +1,43 @@
+<div class="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+  <h1 class="mb-8 text-3xl font-bold text-primary sm:text-4xl">Property Binding Exercice</h1>
+
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <article class="card w-full bg-base-100 shadow-md">
+      <figure>
+        <img
+          [src]="oneFriend.imgurl"
+          [alt]="'Photo de ' + oneFriend.name"
+          class="h-40 w-full object-cover"
+          loading="lazy"
+        />
+      </figure>
+
+      <div class="card-body">
+        <h2 class="card-title text-primary">{{oneFriend. name}}</h2>
+
+        <dl class="space-y-2 text-sm">
+          <div>
+            <dt class="inline font-bold">Status : </dt>
+            <dd class="inline"><span class="badge" [class]="getOneFriendStatus() === 'Online' ? 'badge-success' : 'badge-error'">{{ getOneFriendStatus() }}
+            </span></dd>
+          </div>
+
+          <div>
+            <dt class="inline font-bold">Âge : </dt>
+            <dd class="inline">{{oneFriend.age}}</dd>
+          </div>
+
+          <div>
+            <dt class="inline font-bold">Bio : </dt>
+            <dd class="inline">{{oneFriend.bio}}</dd>
+          </div>
+
+          <div>
+            <dt class="inline font-bold">Réputation : </dt>
+            <dd class="inline">{{ oneFriend.status === 'Online' ? 'Cool' : 'Pas cool' }}</dd>
+          </div>
+        </dl>
+      </div>
+    </article>
+  </div>
+</div>
