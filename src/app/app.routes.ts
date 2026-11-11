@@ -8,6 +8,8 @@ import { TwoWayBindingLesson } from './pages/lessons/two-way-binding-lesson/two-
 import { ConditionalRenderingLesson } from './pages/lessons/conditional-rendering-lesson/conditional-rendering-lesson';
 import { TextInterpolationExercice } from './pages/exercices/text-interpolation-exercice/text-interpolation-exercice';
 import { PropertyBindingExercice } from './pages/exercices/property-binding-exercice/property-binding-exercice';
+import { EventBindingExercice } from './pages/exercices/event-binding-exercice/event-binding-exercice';
+import { EnvironmentInjector } from '@angular/core';
 export const routes: Routes = [
   //! Route pour la page À propos (classique)
   { path: 'about', component: About },
@@ -27,6 +29,7 @@ export const routes: Routes = [
   { path: 'conditional-rendering-lesson', component: ConditionalRenderingLesson},
   { path: 'text-interpolation-exercice', component: TextInterpolationExercice },
   { path: 'property-binding-exercice', component: PropertyBindingExercice },
+  { path: 'event-binding-exercice', component: EventBindingExercice},
 
    //! ---------- Le système page Not Found ---------------------------------------------------------------------
   // Dans Angular il faut placer à la fin le path:'**'

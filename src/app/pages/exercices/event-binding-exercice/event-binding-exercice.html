@@ -1,0 +1,40 @@
+<section class="mx-auto w-full max-w-md px-4 py-8 sm:py-12" aria-labelledby="titre-amis">
+  <h1 id="titre-amis" class="mb-8 text-center text-3xl font-bold text-primary">
+    List Friends
+    <span class="text-base-content/70">(Event Binding)</span>
+  </h1>
+
+  <form class="flex flex-col gap-2" (submit)="$event.preventDefault()">
+    <label for="friend-name" class="text-sm">Nom de l'ami</label>
+    <input
+      id="friend-name"
+      name="friend-name"
+      type="text"
+      autocomplete="off"
+      placeholder="Entrer le nom d'un ami"
+      aria-describedby="friend-status"
+      class="input w-full placeholder:text-base-content/70"
+      (input)="onUpdateFriendsList($event)"
+    />
+
+    <p class="text-sm">
+      Saisie : <strong>{{ listFriendsInputText }}</strong>
+    </p>
+
+    <p id="friend-status" role="status" class="my-6 text-center text-sm">
+      {{ listFriendsCreationStatus }}
+    </p>
+
+    <div class="flex justify-center">
+      <button
+        type="submit"
+        class="btn btn-primary w-full sm:w-auto"
+        [disabled]="!listFriendsAuth"
+        (click)="onAddingFriends()"
+      >
+        <span aria-hidden="true">+</span>
+        Ajouter un ami
+      </button>
+    </div>
+  </form>
+</section>
