@@ -25,6 +25,14 @@ export const routes: Routes = [
   { path: 'two-way-binding-lesson', component: TwoWayBindingLesson},
   { path: 'text-interpolation-exercice', component: TextInterpolationExercice },
   { path: 'property-binding-exercice', component: PropertyBindingExercice },
+
+   //! ---------- Le système page Not Found ---------------------------------------------------------------------
+  // Dans Angular il faut placer à la fin le path:'**'
+  // ! check la doc si ya meilleure manière de faire ou plus simple ? aller explorer analog ?
+  {
+    path:'**',
+    loadComponent:()=>import('./shared/not-found/not-found').then(m=>m.NotFound)
+  }
   
   
 ];
