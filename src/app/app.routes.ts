@@ -4,6 +4,7 @@ import { About } from './pages/about/about';
 import { TextInterpolationLesson } from './pages/lessons/text-interpolation-lesson/text-interpolation-lesson';
 import { AttributesBindingLesson } from './pages/lessons/attributes-binding-lesson/attributes-binding-lesson';
 import { EventBindingLesson } from './pages/lessons/event-binding-lesson/event-binding-lesson'
+import { TwoWayBindingLesson } from './pages/lessons/two-way-binding-lesson/two-way-binding-lesson';
 import { TextInterpolationExercice } from './pages/exercices/text-interpolation-exercice/text-interpolation-exercice';
 import { PropertyBindingExercice } from './pages/exercices/property-binding-exercice/property-binding-exercice';
 export const routes: Routes = [
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'text-interpolation-lesson', component: TextInterpolationLesson },
   { path: 'attributes-binding-lesson', component: AttributesBindingLesson },
   { path: 'event-binding-lesson', component: EventBindingLesson },
+  { path: 'two-way-binding-lesson', component: TwoWayBindingLesson},
   { path: 'text-interpolation-exercice', component: TextInterpolationExercice },
   { path: 'property-binding-exercice', component: PropertyBindingExercice },
   
