@@ -9,6 +9,7 @@ import { ConditionalRenderingLesson } from './pages/lessons/conditional-renderin
 import { TextInterpolationExercice } from './pages/exercices/text-interpolation-exercice/text-interpolation-exercice';
 import { PropertyBindingExercice } from './pages/exercices/property-binding-exercice/property-binding-exercice';
 import { EventBindingExercice } from './pages/exercices/event-binding-exercice/event-binding-exercice';
+import { ConditionalRenderingExercice } from './pages/exercices/conditional-rendering-exercice/conditional-rendering-exercice';
 import { EnvironmentInjector } from '@angular/core';
 export const routes: Routes = [
   //! Route pour la page À propos (classique)
@@ -30,6 +31,7 @@ export const routes: Routes = [
   { path: 'text-interpolation-exercice', component: TextInterpolationExercice },
   { path: 'property-binding-exercice', component: PropertyBindingExercice },
   { path: 'event-binding-exercice', component: EventBindingExercice},
+   { path: 'conditional-rendering-exercice', component: ConditionalRenderingExercice},
 
    //! ---------- Le système page Not Found ---------------------------------------------------------------------
   // Dans Angular il faut placer à la fin le path:'**'
