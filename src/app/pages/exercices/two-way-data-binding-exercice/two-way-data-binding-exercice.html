@@ -1,0 +1,83 @@
+<div class="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+
+    <!-- Carte de gauche : aperçu de l'ami -->
+    <article class="card bg-base-100 shadow-md lg:col-span-1" aria-labelledby="card-name">
+      <figure>
+        <img
+          [src]="oneFriendImgUrl"
+          [alt]="oneFriendName"
+          class="h-48 w-full object-cover"
+        />
+      </figure>
+
+      <div class="card-body ">
+        <h2 id="card-name" class="card-title text-primary">{{oneFriendName}}</h2>
+
+        <dl class="flex grow flex-col justify-evenly gap-4 text-sm">
+            <div>
+                <dt class="inline font-bold">Status : </dt>
+                <dd class="inline">{{getOneFriendStatus()}}</dd>
+            </div>
+            <div>
+                <dt class="inline font-bold">Âge : </dt>
+                <dd class="inline">{{oneFriendAge}}</dd>
+            </div>
+            <div>
+                <dt class="inline font-bold">Bio : </dt>
+                <dd  class="inline">{{oneFriendBio}}</dd>
+            </div>
+            <div>
+                <dt class="inline font-bold">Réputation : </dt>
+                <dd class="inline">{{getOneFriendStatus() === 'Online' ? 'Cool' : 'Pas cool'}}</dd>
+            </div>
+        </dl>
+      </div>
+    </article>
+
+    <!-- Formulaire de droite : édition -->
+    <section class="card bg-base-100 shadow-md lg:col-span-2" aria-labelledby="titre-edition">
+      <div class="card-body">
+        <h1 id="titre-edition" class="card-title text-2xl text-primary">
+          Éditer les informations de {{oneFriendName}}
+        </h1>
+
+        <form class="flex flex-col gap-4" (submit)="$event.preventDefault()">
+          <div class="flex flex-col gap-1">
+            <label  for="friend-name" class="text-sm">Nom</label>
+            <input [(ngModel)]="oneFriendName" id="friend-name" name="friend-name" type="text" autocomplete="off"
+                    class="input w-full" />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="friend-age" class="text-sm">Âge</label>
+            <input [(ngModel)]="oneFriendAge" id="friend-age" name="friend-age" type="number" inputmode="numeric" min="0"
+                    class="input w-full" />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label   for="friend-status" class="text-sm">Status</label>
+            <input [(ngModel)]="oneFriendStatus" id="friend-status" name="friend-status" type="text" autocomplete="off"
+             class="input w-full" />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="friend-bio" class="text-sm">Bio</label>
+            <textarea [(ngModel)]="oneFriendBio" id="friend-bio" name="friend-bio" rows="4" class="textarea w-full"></textarea>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="friend-image" class="text-sm">Image (URL)</label>
+            <input [(ngModel)]="oneFriendImgUrl" id="friend-image" name="friend-image" type="url" autocomplete="off" class="input w-full" />
+          </div>
+
+          <div class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+            <button type="button" class="btn btn-neutral">Annuler</button>
+            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </div>
+</div>
