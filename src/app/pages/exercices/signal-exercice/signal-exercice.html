@@ -1,0 +1,135 @@
+<div class="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+
+  <!-- En-tête : titre + bouton de réinitialisation -->
+  <div class="mb-8 flex flex-col gap-4 border-b border-base-300 pb-6 sm:flex-row sm:items-start sm:justify-between">
+    <div>
+        <h1 class="text-3xl font-bold text-primary sm:text-4xl">
+        Exercice : Panier Réactif avec Signals
+        </h1>
+        <p class="mt-2 text-sm text-base-content/70">
+        Pratique de <code>signal()</code>, <code>computed()</code> et <code>effect()</code>.
+        </p>
+    </div>
+    <button (click)="resetCart()" type="button" class="btn btn-outline btn-secondary btn-sm self-center">
+        <span aria-hidden="true">↺</span>
+        Réinitialiser
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+
+    <!-- Bloc 1 : configuration -->
+    <section class="card bg-base-200 shadow-md" aria-labelledby="titre-config">
+      <div class="card-body gap-6">
+        <h2 id="titre-config" class="card-title">1. Configuration de la commande</h2>
+
+        <!-- Quantité -->
+        <div role="group" aria-labelledby="label-quantite">
+          <p id="label-quantite" class="mb-2 text-sm font-semibold">Quantité d'articles</p>
+          <div class="flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+            <!-- BOUTON MOINS -->
+              <button 
+                [disabled]="quantity() === 0" 
+                (click)="decrementQuantity()"
+                type="button" 
+                class="btn btn-circle btn-outline btn-sm" 
+                aria-label="Diminuer la quantité">
+                <span aria-hidden="true">−</span>
+              </button>
+              <!-- À remplacer par : quantity() -->
+              <output class="min-w-8 text-center text-3xl font-bold" aria-live="polite">{{quantity()}}</output>
+              <button
+                (click)="incrementQuantity()"
+                type="button" 
+                class="btn btn-circle btn-outline btn-sm" 
+                aria-label="Augmenter la quantité">
+                <span aria-hidden="true">+</span>
+              </button>
+            </div>
+            <p class="text-xs text-base-content/70">(35 € / unité)</p>
+          </div>
+        </div>
+
+        <!-- Remise -->
+        <fieldset>
+          <legend class="mb-2 text-sm font-semibold">Code Promo / Remise</legend>
+          <div class="join w-full">
+            <input
+                (click)="setDiscount(0)"
+                [class.btn-primary]="discountPercent() === 0" 
+                class="btn join-item flex-1 "
+                type="radio" name="discount" value="0" aria-label="Aucune (0%)" />
+            <input
+                (click)="setDiscount(10)"
+                [class.btn-primary]="discountPercent() === 10"
+                class="btn join-item flex-1 "
+                type="radio" name="discount" value="10" aria-label="-10%" />
+            <input 
+                (click)="setDiscount(20)"
+                [class.btn-primary]="discountPercent() === 20"
+                class="btn join-item flex-1 "
+                type="radio" name="discount" value="20" aria-label="-20%" />
+          </div>
+        </fieldset>
+
+        <!-- Livraison express -->
+        <div class="flex items-center justify-between gap-4 rounded-box border border-base-300 bg-base-100 p-4">
+          <div>
+            <label for="express" class="block text-sm font-semibold">Livraison Express (24h)</label>
+            <p id="express-help" class="text-xs text-base-content/70">Supplément fixe de {{shippingFee()}} €</p>
+          </div>
+          <input
+            [checked]="isExpressShipping()"
+            (change)="toggleExpressShipping()" 
+            id="express" type="checkbox" role="switch" class="toggle toggle-primary"
+                 aria-describedby="express-help" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloc 2 : synthèse -->
+    <section class="card border-2 border-primary/40 bg-base-100 shadow-md" aria-labelledby="titre-synthese">
+      <div class="card-body gap-4">
+        <h2 id="titre-synthese" class="card-title text-primary">2. Synthèse de la commande</h2>
+        <p class="text-xs text-base-content/70">
+          Toutes les valeurs ci-dessous proviennent de <code>computed()</code>.
+        </p>
+
+        <dl class="divide-y divide-base-300 text-sm">
+          <div class="flex items-center justify-between py-3">
+            <dt>Sous-total brut</dt>
+            <dd class="font-mono font-bold">{{subTotal()}}</dd>
+          </div>
+          <div class="flex items-center justify-between py-3">
+            <dt>Remise ({{discountPercent()}}%)</dt>
+            <dd><span class="badge badge-success font-mono font-bold">− {{discountAmount()}}</span></dd>
+          </div>
+          <div class="flex items-center justify-between py-3">
+            <dt>Frais de port</dt>
+            <dd class="font-mono font-bold">{{shippingFee()}}</dd>
+          </div>
+          <div class="flex items-center justify-between ">
+            <dt></dt>
+            @if(subTotal() <= 100){
+              <p id="express-help" class="text-xs text-base-content/70">Encore <strong>{{100 - subTotal()}}</strong> euros d'achats pour bénificier de la livraison offerte</p>
+            }
+            @else{<p><span class="badge badge-success font-mono font-bold">Frais de port offert !</span></p>}
+          </div>
+        </dl>
+
+        <!-- Total -->
+        <div class="rounded-box bg-base-200 p-4">
+          <p class="text-xs text-base-content/70">Total à payer</p>
+          <output class="block text-4xl font-bold text-primary" aria-live="polite">{{total()}}</output>
+          @if(isExpressShipping()){<p class="mt-1 text-xs text-base-content/70">
+            <span aria-hidden="true">⚡</span> Mode Express sélectionné
+          </p>}
+        </div>
+
+        <button type="button" class="btn btn-primary mt-auto w-full">Commander ({{quantity()}} articles)</button>
+      </div>
+    </section>
+
+  </div>
+</div>
