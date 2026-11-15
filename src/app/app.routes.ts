@@ -1,17 +1,22 @@
 import { Routes } from '@angular/router';
 //!/! Import de la classe  Route classique pour définir les routes de l'application
+// Import Lessons
 import { About } from './pages/about/about';
 import { TextInterpolationLesson } from './pages/lessons/text-interpolation-lesson/text-interpolation-lesson';
 import { AttributesBindingLesson } from './pages/lessons/attributes-binding-lesson/attributes-binding-lesson';
 import { EventBindingLesson } from './pages/lessons/event-binding-lesson/event-binding-lesson'
 import { TwoWayBindingLesson } from './pages/lessons/two-way-binding-lesson/two-way-binding-lesson';
 import { ConditionalRenderingLesson } from './pages/lessons/conditional-rendering-lesson/conditional-rendering-lesson';
+
+// Import Exercices
 import { TextInterpolationExercice } from './pages/exercices/text-interpolation-exercice/text-interpolation-exercice';
 import { PropertyBindingExercice } from './pages/exercices/property-binding-exercice/property-binding-exercice';
 import { EventBindingExercice } from './pages/exercices/event-binding-exercice/event-binding-exercice';
 import { ConditionalRenderingExercice } from './pages/exercices/conditional-rendering-exercice/conditional-rendering-exercice';
 import { TwoWayDataBindingExercice } from './pages/exercices/two-way-data-binding-exercice/two-way-data-binding-exercice';
 import { SignalExercice } from './pages/exercices/signal-exercice/signal-exercice';
+import { ListRenderingLesson } from './pages/lessons/list-rendering-lesson/list-rendering-lesson';
+
 import { EnvironmentInjector } from '@angular/core';
 
 export const routes: Routes = [
@@ -26,11 +31,14 @@ export const routes: Routes = [
     // Lazy Loading du composant
     loadComponent: () => import('./pages/home/home').then((m) => m.Home),
   },
+  // Path Lesson
   { path: 'text-interpolation-lesson', component: TextInterpolationLesson },
   { path: 'attributes-binding-lesson', component: AttributesBindingLesson },
   { path: 'event-binding-lesson', component: EventBindingLesson },
   { path: 'two-way-binding-lesson', component: TwoWayBindingLesson},
   { path: 'conditional-rendering-lesson', component: ConditionalRenderingLesson},
+  { path: 'list-rendering-lesson', component: ListRenderingLesson},
+  // Path Exercice
   { path: 'text-interpolation-exercice', component: TextInterpolationExercice },
   { path: 'property-binding-exercice', component: PropertyBindingExercice },
   { path: 'event-binding-exercice', component: EventBindingExercice},
