@@ -18,9 +18,11 @@ import { ConditionalRenderingExercice } from './pages/exercices/conditional-rend
 import { TwoWayDataBindingExercice } from './pages/exercices/two-way-data-binding-exercice/two-way-data-binding-exercice';
 import { SignalExercice } from './pages/exercices/signal-exercice/signal-exercice';
 import { SignalsFormExercice } from './pages/exercices/signals-form-exercice/signals-form-exercice';
+import { ObservableSimpleExercice } from './pages/exercices/observable-simple-exercice/observable-simple-exercice';
 
 
 import { EnvironmentInjector } from '@angular/core';
+
 
 export const routes: Routes = [
   //! Route pour la page À propos (classique)
@@ -50,6 +52,7 @@ export const routes: Routes = [
   { path: 'two-way-data-binding-exercice', component: TwoWayDataBindingExercice},
   { path: 'signal-exercice', component: SignalExercice},
   { path: 'signals-form-exercice', component: SignalsFormExercice},
+  { path: 'observable-simple-exercice', component: ObservableSimpleExercice},
 
    //! ---------- Le système page Not Found ---------------------------------------------------------------------
   // Dans Angular il faut placer à la fin le path:'**'

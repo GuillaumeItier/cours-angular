@@ -1,0 +1,35 @@
+<div class="mx-auto flex w-full max-w-xl flex-col items-center px-4 py-8 sm:px-6">
+
+  <h1 class="text-center text-3xl font-bold text-primary sm:text-4xl">
+    Générateur Simplifié de Nombres Aléatoires
+  </h1>
+
+  <!-- Commandes du générateur -->
+  <form
+    class="my-6 flex flex-wrap justify-center gap-3"
+    aria-label="Contrôles du générateur"
+    (submit)="$event.preventDefault()"
+  >
+    <button (click)="start()" type="button" class="btn btn-success w-28">Démarrer</button>
+    <button (click)="pauseResume()" type="button" class="btn btn-warning w-28">{{ paused() ? 'Reprendre' : '  Pause  ' }}</button>
+    <button (click)="stop()" type="button" class="btn btn-error w-28">Arrêter</button>
+  </form>
+
+  <!-- Résultats -->
+  <section class="card w-full bg-base-100 shadow-md" aria-labelledby="titre-nombres">
+    <div class="card-body">
+      <h2 id="titre-nombres" class="card-title">Nombres Générés</h2>
+
+      <!-- À remplacer par un @for sur votre tableau de nombres -->
+      <ol class="flex flex-col gap-2">
+        
+        @for (number of numbers(); track $index) {
+            <li class="rounded-box bg-base-200 py-3 text-center font-mono text-xl font-bold text-primary">{{ number }}</li>
+        } @empty {
+            <p>Aucun nombre généré pour l'instant.</p>
+        }
+      </ol>
+    </div>
+  </section>
+
+</div>
