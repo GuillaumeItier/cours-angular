@@ -1,0 +1,143 @@
+<div class="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6">
+
+  <!-- Titre de la page -->
+  <div class="mb-8 border-b border-base-300 pb-6">
+    <h1 id="titre-page" class="text-3xl font-bold text-primary sm:text-4xl">
+      Exercice : Validation de Formulaire
+    </h1>
+    <p class="mt-2 text-sm text-base-content/70">
+      Validation temps réel via RegEx et <code>computed()</code> sans dépendre de ReactiveForms.
+    </p>
+  </div>
+
+  <div class="card border border-base-300 bg-base-100 shadow-md">
+    @if (isSubmitted()) {
+    <div class="card-body items-center text-center gap-6 py-10">
+      <h2 class="text-xl font-bold text-success">
+      Le formulaire a été soumis avec succès !
+      </h2>
+      <button (click)="resetForm()" type="button" class="btn btn-primary w-full">
+      Réinitialiser
+      </button>
+    </div>
+    }
+    @else {
+    <form (submit)="submitForm($event)" class="card-body gap-6" aria-labelledby="titre-page" novalidate>
+
+      <p class="text-sm text-base-content/70">Tous les champs sont obligatoires.</p>
+
+      <!-- Email -->
+      <div class="flex flex-col gap-1">
+        <label for="email" class="text-sm font-semibold">Adresse Email</label>
+        <input
+          [value]="email()"
+          (input)="onInput(email, emailTouched, $event)"
+          [class.input-error]="emailTouched() && !isEmailValid()"
+          [class.input-success]="emailTouched() && isEmailValid()"
+          id="email"
+          name="email"
+          type="email"
+          inputmode="email"
+          autocomplete="email"
+          aria-describedby="email-error"
+          required
+          class="input w-full"
+        />
+        <div id="email-error" class="h-5 mt-0">
+        @if (emailTouched() && !isEmailValid()) {
+            <p class="text-sm text-secondary my-0 leading-none">
+               Veuillez saisir une adresse email valide.
+            </p>
+        }
+        </div>
+      </div>
+      
+      
+
+      <!-- Mot de passe -->
+      <div class="flex flex-col gap-1">
+        <label for="password" class="text-sm font-semibold">Mot de passe</label>
+        <div class="join w-full">
+          <input
+            [value]="password()"
+            (input)="onInput(password, passwordTouched, $event)"
+            [class.input-error]="passwordTouched() && !isPasswordValid()"
+            [class.input-success]="passwordTouched() && isPasswordValid()"
+            id="password"
+            name="password"
+            [type]="showPassword() ? 'text' : 'password'"
+            autocomplete="new-password"
+            aria-describedby="password-error"
+            required
+            class="input join-item w-full"
+          />
+          <button
+            (click)="toggleShowPassword()"
+            type="button"
+            class="btn join-item"
+            aria-controls="password"
+            [attr.aria-label]="showPassword() ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+          >
+          {{showPassword() ? "Masquer" : "Afficher"}}
+          </button>
+        </div>
+        
+
+        <!-- Indicateur de force -->
+        <div class="mt-2">
+          <div class="flex items-center justify-between text-xs">
+            <span id="strength-label">Force du mot de passe :</span>
+            <!-- À remplacer par : le texte du computed() de force -->
+            <output for="password" class="font-bold" aria-live="polite">{{passwordStrengthLabel().text}}</output>
+          </div>
+          <progress
+            class="progress mt-1 w-full"
+            [class]="passwordStrengthLabel().class"
+            [value]="passwordScore()" max="4"
+            aria-labelledby="strength-label"
+          ></progress>
+        </div>
+        <div id="password-error" class="min-h-10 mt-1">
+            @if (passwordTouched() && !isPasswordValid()) {
+            <p class="text-sm text-secondary my-0 leading-tight">
+                8 caractères minimum, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial (@$!%*?&).
+            </p>
+            }
+        </div>
+
+      </div>
+
+      <!-- Téléphone -->
+      <div class="flex flex-col gap-1">
+        <label for="phone" class="text-sm font-semibold">Téléphone portable</label>
+        <input
+          [value]="phone()"
+          (input)="onInput(phone, phoneTouched, $event)"
+          [class.input-error]="phoneTouched() && !isPhoneValid()"
+          [class.input-success]="phoneTouched() && isPhoneValid()"
+          id="phone"
+          name="phone"
+          type="tel"
+          inputmode="tel"
+          autocomplete="tel"
+          aria-describedby="phone-error"
+          required
+          class="input w-full"
+        />
+        <div id="phone-error" class="h-5 mt-1">
+          @if (phoneTouched() && !isPhoneValid()) {
+            <p class="text-sm text-secondary my-0 leading-none">
+            Format attendu : 06XXXXXXXX ou +336XXXXXXXX.
+            </p>
+        }
+        </div>
+      </div>
+
+     
+      <button [disabled]="!isFormValid()" type="submit" class="btn btn-primary w-full" >Créer mon compte</button>
+    </form>
+
+     }
+    
+  </div>
+</div>

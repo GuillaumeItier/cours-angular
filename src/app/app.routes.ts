@@ -17,6 +17,7 @@ import { EventBindingExercice } from './pages/exercices/event-binding-exercice/e
 import { ConditionalRenderingExercice } from './pages/exercices/conditional-rendering-exercice/conditional-rendering-exercice';
 import { TwoWayDataBindingExercice } from './pages/exercices/two-way-data-binding-exercice/two-way-data-binding-exercice';
 import { SignalExercice } from './pages/exercices/signal-exercice/signal-exercice';
+import { SignalsFormExercice } from './pages/exercices/signals-form-exercice/signals-form-exercice';
 
 
 import { EnvironmentInjector } from '@angular/core';
@@ -48,6 +49,7 @@ export const routes: Routes = [
   { path: 'conditional-rendering-exercice', component: ConditionalRenderingExercice},
   { path: 'two-way-data-binding-exercice', component: TwoWayDataBindingExercice},
   { path: 'signal-exercice', component: SignalExercice},
+  { path: 'signals-form-exercice', component: SignalsFormExercice},
 
    //! ---------- Le système page Not Found ---------------------------------------------------------------------
   // Dans Angular il faut placer à la fin le path:'**'
