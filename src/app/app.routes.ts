@@ -20,6 +20,7 @@ import { SignalExercice } from './pages/exercices/signal-exercice/signal-exercic
 import { SignalsFormExercice } from './pages/exercices/signals-form-exercice/signals-form-exercice';
 import { ObservableSimpleExercice } from './pages/exercices/observable-simple-exercice/observable-simple-exercice';
 import { ApiHttpclientExercice } from './pages/exercices/api-httpclient-exercice/api-httpclient-exercice';
+import { ObservablesAdvancedExercice } from './pages/exercices/observables-advanced-exercice/observables-advanced-exercice';
 
 
 
@@ -56,7 +57,7 @@ export const routes: Routes = [
   { path: 'signals-form-exercice', component: SignalsFormExercice},
   { path: 'observable-simple-exercice', component: ObservableSimpleExercice},
   { path: 'api-httpclient-exercice', component: ApiHttpclientExercice},
-
+  { path: 'observables-advanced-exercice', component: ObservablesAdvancedExercice},
 
    //! ---------- Le système page Not Found ---------------------------------------------------------------------
   // Dans Angular il faut placer à la fin le path:'**'
