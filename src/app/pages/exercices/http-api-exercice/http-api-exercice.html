@@ -1,0 +1,131 @@
+<div class="mx-auto w-full max-w-5xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
+
+  <!-- 1. Titre et recherche -->
+  <section class="card border border-base-300 bg-base-100 shadow-md" aria-labelledby="titre-page">
+    <div class="card-body gap-4">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <h1 id="titre-page" class="text-2xl font-bold text-primary sm:text-3xl">
+            <span aria-hidden="true">🌤️</span> Météo en Direct (Service + API)
+          </h1>
+          <p class="mt-1 text-sm text-base-content/70">
+            Données fournies par <code>prevision-meteo.ch</code> via <code>MeteoService</code>
+          </p>
+        </div>
+
+        <form role="search" aria-label="Rechercher une ville" class=" gap-2 join w-full lg:w-auto"
+              (submit)="$event.preventDefault()">
+          <label for="ville" class="sr-only">Nom de la ville</label>
+          <input #cityInput id="ville" name="ville" type="search" autocomplete="off" required
+                 class="input join-item w-full lg:w-64" />
+          <button  (click)="selectCity(cityInput.value)" type="submit" class="btn btn-primary join-item">Rechercher</button>
+        </form>
+      </div>
+
+      <div class="divider my-0"></div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <p id="villes-rapides" class="text-sm text-base-content/70">Villes rapides :</p>
+        <ul class="flex flex-wrap gap-2" aria-labelledby="villes-rapides">
+          @for (city of quickCities; track city) {
+            <li>
+              <button 
+                type="button" 
+                class="btn btn-outline btn-sm"
+                (click)="selectCity(city)"
+                >
+                {{ city }}
+              </button></li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  @if (isLoading()) {
+    <div class="flex justify-center p-12">
+      <span class="loading loading-spinner loading-lg text-primary"></span>
+    </div>
+  }
+  @else if (errorMessage()) {
+    <div role="alert" class="alert alert-error shadow-md">
+      <span>⚠️ {{ errorMessage() }}</span>
+    </div>
+  }
+
+  <!-- 2. Météo du jour -->
+  @else if (meteoData(); as meteo) {
+  <section class="card border border-base-300 bg-base-100 shadow-md" aria-labelledby="titre-ville">
+    <div class="card-body gap-6">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <div class="flex flex-wrap items-center gap-3">
+            <h2 id="titre-ville" class="text-3xl font-bold sm:text-4xl">{{ meteo.city_info.name }}</h2>
+            <span class="badge badge-outline badge-primary badge-lg">{{ meteo.city_info.country }}</span>
+          </div>
+          <p class="mt-2 text-sm text-base-content/70">
+            Altitude : <strong>{{ meteo.city_info.elevation }}</strong>
+            · Lever : <time datetime="07:49"><strong>{{ meteo.city_info.sunrise }}</strong></time>
+            · Coucher : <time datetime="17:29"><strong>{{ meteo.city_info.sunset }}</strong></time>
+          </p>
+        </div>
+
+        <div class="flex items-center gap-4 rounded-box bg-base-200 p-4">
+          <span class="text-5xl" aria-hidden="true">☁️</span>
+          <div>
+            <p class="text-4xl font-bold text-primary">{{ meteo.current_condition.tmp }}°C</p>
+            <p class="text-sm">{{ meteo.current_condition.condition }}</p>
+          </div>
+        </div>
+      </div>
+
+      <dl class="stats stats-vertical w-full border border-base-300 bg-base-200 sm:stats-horizontal">
+        <div class="stat">
+          <dt class="stat-title text-base-content/70">Vent</dt>
+          <dd class="stat-value text-2xl text-info">{{ meteo.current_condition.wnd_spd }} km/h</dd>
+          <dd class="stat-desc text-base-content/70">Direction : {{ meteo.current_condition.wnd_dir }}</dd>
+        </div>
+        <div class="stat">
+          <dt class="stat-title text-base-content/70">Humidité</dt>
+          <dd class="stat-value text-2xl text-accent">{{ meteo.current_condition.humidity }}%</dd>
+          <dd class="stat-desc text-base-content/70">Relevé à <time datetime="13:00">{{ meteo.current_condition.hour }}</time></dd>
+        </div>
+        <div class="stat">
+          <dt class="stat-title text-base-content/70">Pression</dt>
+          <dd class="stat-value text-2xl text-warning">{{ meteo.current_condition.pressure }} hPa</dd>
+          <dd class="stat-desc text-base-content/70"><time datetime="2026-11-17">{{ meteo.current_condition.date }}</time></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+  
+
+  <!-- 3. Prévisions sur 5 jours -->
+  <section aria-labelledby="titre-previsions">
+    <h2 id="titre-previsions" class="mb-4 text-2xl text-secondary font-bold">
+      <span aria-hidden="true">📅</span> Prévisions sur 5 jours
+    </h2>
+
+    <ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      @for (day of forecastDays(); track day.date){
+      <li>
+        
+        <article class="card h-full border border-base-300 bg-base-100 text-center shadow-md">
+          <div class="card-body items-center gap-2 p-4">
+            <h3 class="font-bold text-primary">{{ day.day_short }}</h3>
+            <p class="text-xs text-base-content/70"><time datetime="2026-11-17">{{ day.date }}</time></p>
+            <img [src]="day.icon" [alt]="day.condition" class="w-12 h-12 my-2" />
+            <span class="sr-only">Pluie</span>
+            <p class="font-mono text-sm font-bold">
+              <span class="sr-only ">Minimale</span> <span class="text-info">{{ day.tmin }}° </span> / <span class="sr-only ">maximale</span> <span class="text-error">{{ day.tmax }}° </span>
+            </p>
+          </div>
+        </article>
+       
+      </li>
+       }
+    </ul>
+  </section>
+  }
+
+</div>

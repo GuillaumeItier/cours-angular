@@ -21,10 +21,12 @@ import { SignalsFormExercice } from './pages/exercices/signals-form-exercice/sig
 import { ObservableSimpleExercice } from './pages/exercices/observable-simple-exercice/observable-simple-exercice';
 import { ApiHttpclientExercice } from './pages/exercices/api-httpclient-exercice/api-httpclient-exercice';
 import { ObservablesAdvancedExercice } from './pages/exercices/observables-advanced-exercice/observables-advanced-exercice';
+import { HttpApiExercice } from './pages/exercices/http-api-exercice/http-api-exercice';
 
 
 
 import { EnvironmentInjector } from '@angular/core';
+
 
 
 export const routes: Routes = [
@@ -58,6 +60,7 @@ export const routes: Routes = [
   { path: 'observable-simple-exercice', component: ObservableSimpleExercice},
   { path: 'api-httpclient-exercice', component: ApiHttpclientExercice},
   { path: 'observables-advanced-exercice', component: ObservablesAdvancedExercice},
+  { path: 'http-api-exercice', component: HttpApiExercice},
 
    //! ---------- Le système page Not Found ---------------------------------------------------------------------
   // Dans Angular il faut placer à la fin le path:'**'
