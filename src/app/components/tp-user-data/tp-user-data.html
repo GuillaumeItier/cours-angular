@@ -1,0 +1,36 @@
+<article class="mx-auto max-w-sm rounded-box bg-warning p-4 text-warning-content shadow-md sm:p-6">
+  <h3 id="user-data-card-title" class="text-2xl font-bold uppercase">User Data</h3>
+
+  <form class="mt-4 flex flex-col gap-3" aria-labelledby="user-data-card-title" novalidate (submit)="submitData($event)">
+    <p class="font-semibold">Formulaire d'édition :</p>
+
+    <div>
+      <label for="user-name" class="sr-only">Nom</label>
+      <input
+        id="user-name"
+        name="name"
+        type="text"
+        autocomplete="name"
+        placeholder="Votre nom"
+        class="input w-full border-warning-content bg-base-100 placeholder:text-base-content/70"
+        (input)="onNameInput($event)"
+      />
+    </div>
+
+    <div>
+      <label for="user-age" class="sr-only">Âge</label>
+      <input
+        id="user-age"
+        name="age"
+        type="number"
+        inputmode="numeric"
+        min="0"
+        max="120"
+        class="input w-full border-warning-content bg-base-100"
+        (input)="onAgeInput($event)"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-outline mt-2 w-full">MAJ des Data</button>
+  </form>
+</article>

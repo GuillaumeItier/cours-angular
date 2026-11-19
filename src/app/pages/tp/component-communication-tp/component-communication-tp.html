@@ -1,0 +1,30 @@
+<div class="mx-auto max-w-2xl p-4 sm:p-8">
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body gap-6">
+
+      <h1 class="text-center text-2xl font-bold text-primary sm:text-3xl">
+        TP : Component Communication
+      </h1>
+      <p class="text-center">
+        Échange de données entre un composant parent et ses composants enfants.
+      </p>
+
+      <section class="rounded-box border border-base-300 p-4 sm:p-6" aria-labelledby="active-user-title">
+        <h2 id="active-user-title" class="mb-4 text-xl font-bold text-secondary">
+          Utilisateur Actif (ActiveUser)
+        </h2>
+        <app-tp-user-active class="block" [activeUser]="oneUser()" />
+      </section>
+
+      <div class="divider">Mise à jour</div>
+
+      <section class="rounded-box border border-base-300 p-4 sm:p-6" aria-labelledby="user-data-title">
+        <h2 id="user-data-title" class="mb-4 text-xl font-bold text-secondary">
+          Formulaire de Données (UserData)
+        </h2>
+        <app-tp-user-data class="block" (userDataEmitUpdate)="updateUser($event)" />
+      </section>
+
+    </div>
+  </div>
+</div>

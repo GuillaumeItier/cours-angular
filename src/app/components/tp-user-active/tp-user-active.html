@@ -1,0 +1,13 @@
+<article class="rounded-box bg-info p-4 text-info-content shadow-md sm:p-6">
+  <h3 class="text-center text-2xl font-bold uppercase">Active User</h3>
+  <p class="mt-4">Affichage des données :</p>
+
+  <dl class="mt-3">
+    <dt class="sr-only">Nom</dt>
+    <dd class="rounded-box bg-base-100 px-4 py-2 text-center text-xl font-bold text-primary">
+      {{activeUser().name}}
+    </dd>
+    <dt class="sr-only">Âge</dt>
+    <dd class="mt-4 text-center text-3xl font-bold">{{activeUser().age}} ans</dd>
+  </dl>
+</article>
