@@ -1,0 +1,135 @@
+<!-- <article class="card h-full border border-base-300 bg-base-100 shadow-md">
+    <div class="card-body gap-4">
+
+        <div class="flex items-start gap-3">
+        <div class="flex size-14 shrink-0 items-center justify-center rounded-box bg-base-200 text-3xl">
+            <span aria-hidden="true">🐶</span>
+        </div>
+        <div class="flex min-w-0 grow flex-col items-start gap-1">
+            <h2 class="text-xl font-bold">Rex</h2>
+            <span class="badge badge-neutral badge-sm">Chien</span>
+        </div>
+        
+        <span class="badge badge-outline font-bold">À adopter</span>
+        </div>
+
+        <dl class="border-t border-base-300 pt-4">
+        <div class="flex items-center justify-between">
+            <dt>Âge :</dt>
+            <dd class="font-bold">3 ans</dd>
+        </div>
+        <div class="mt-3 flex items-center justify-between">
+            <dt>Niveau d'énergie</dt>
+            <dd class="font-bold">85 %</dd>
+        </div>
+        </dl>
+
+        <progress
+        class="progress progress-neutral w-full"
+        value="85"
+        max="100"
+        aria-label="Niveau d'énergie de Rex : 85 %"
+        ></progress>
+
+        <div class="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-base-300 pt-4">
+        <div class="join">
+            <button type="button" class="btn btn-sm btn-ghost join-item border-neutral/20">
+            <span aria-hidden="true">🎾</span> Jouer<span class="sr-only"> avec Rex</span>
+            </button>
+            <button type="button" class="btn btn-sm btn-ghost join-item border-neutral/20">
+            <span aria-hidden="true">💤</span> Sieste<span class="sr-only"> pour Rex</span>
+            </button>
+        </div>
+        <button type="button" class="btn btn-sm btn-neutral">
+            Adopter<span class="sr-only"> Rex</span>
+        </button>
+        </div>
+
+    </div>
+    </article> -->
+
+    <article class="card h-full border border-base-300  bg-base-100 shadow-md">
+        <div class="card-body gap-4">
+            <div class="flex items-start gap-3">
+                <div class="flex size-14 shrink-0 items-center justify-center rounded-box bg-base-200 text-3xl">
+                    <span aria-hidden="true">{{ emoji() }}</span>
+                </div>
+                <div class="flex min-w-0 grow flex-col items-start gap-1">
+                    <h2 
+                        class="text-xl font-bold"
+                        [class]="isAdopted() ? 'text-base-content/70' : ''"
+                    >
+                        {{ name() }}
+                    </h2>
+                    <span 
+                        class="badge badge-neutral badge-sm"
+                        [class]="isAdopted() ? 'bg-neutral/70 border-neutral/70' : ''"
+                    >{{ species() }}</span>
+                </div>
+                @if(isAdopted()){
+                    <span class="badge badge-success border-success/70 bg-success/70 font-bold">
+                    Adopté <span aria-hidden="true">❤️</span>
+                    </span>
+                }
+                @else{
+                    <span class="badge badge-outline font-bold">À adopter</span>
+                }
+
+
+
+
+
+            </div>
+            <dl 
+                class="border-t border-base-300 pt-4 " 
+                [class]="isAdopted() ? 'text-base-content/70' : ''">
+                <div class="flex items-center justify-between">
+                    <dt>Âge :</dt>
+                    <dd class="font-bold">{{ age() }} {{ ageUnit() }}</dd>
+                </div>
+                <div class="mt-3 flex items-center justify-between">
+                    <dt>Niveau d'énergie</dt>
+                    <dd class="font-bold">{{ energy() }} %</dd>
+                </div>
+            </dl>
+            <progress
+                class="progress progress-neutral w-full"
+                [class]="isAdopted() ? 'text-base-content/70' : ''"
+                [value]="energy()"
+                max="100"
+                [attr.aria-label]="`Niveau d'énergie de ${name()} : ${energy()} %`"
+            ></progress>
+            <div class="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-base-300 pt-4">
+                <div class="join">
+
+                    <button 
+                        type="button" 
+                        class="btn btn-sm btn-ghost join-item"
+                        [disabled]="isAdopted()">
+                        <span aria-hidden="true">🎾</span> Jouer<span class="sr-only"> avec {{ name() }}</span>
+                    </button>
+
+                    <button 
+                        type="button" 
+                        class="btn btn-sm btn-ghost join-item"
+                        [disabled]="isAdopted()">
+                        <span aria-hidden="true">💤</span> Sieste<span class="sr-only"> pour {{ name() }}</span>
+                    </button>
+
+                </div>
+                @if (isAdopted()) {
+                <button 
+                    type="button" 
+                    class="btn btn-sm btn-ghost">
+                    Annuler<span class="sr-only"> l'adoption de {{ name() }}</span>
+                </button>
+                } @else {
+                <button 
+                    type="button" 
+                    class="btn btn-sm btn-neutral">
+                    Adopter<span class="sr-only"> {{ name() }}</span>
+                </button>
+                }
+            </div>
+        </div>
+    </article>
