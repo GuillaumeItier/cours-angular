@@ -22,6 +22,7 @@ import { ObservableSimpleExercice } from './pages/exercices/observable-simple-ex
 import { ApiHttpclientExercice } from './pages/exercices/api-httpclient-exercice/api-httpclient-exercice';
 import { ObservablesAdvancedExercice } from './pages/exercices/observables-advanced-exercice/observables-advanced-exercice';
 import { HttpApiExercice } from './pages/exercices/http-api-exercice/http-api-exercice';
+import { AnimalInputExercice } from './pages/exercices/animal-input-exercice/animal-input-exercice';
 
 
 
@@ -61,6 +62,7 @@ export const routes: Routes = [
   { path: 'api-httpclient-exercice', component: ApiHttpclientExercice},
   { path: 'observables-advanced-exercice', component: ObservablesAdvancedExercice},
   { path: 'http-api-exercice', component: HttpApiExercice},
+  { path: 'animal-input-exercice', component: AnimalInputExercice},
 
    //! ---------- Le système page Not Found ---------------------------------------------------------------------
   // Dans Angular il faut placer à la fin le path:'**'
