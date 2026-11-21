@@ -25,10 +25,12 @@ import { HttpApiExercice } from './pages/exercices/http-api-exercice/http-api-ex
 import { AnimalInputExercice } from './pages/exercices/animal-input-exercice/animal-input-exercice';
 // Import TP
 import { ComponentCommunicationTp } from './pages/tp/component-communication-tp/component-communication-tp';
+import { TaskListExercice } from './pages/exercices/task-list-exercice/task-list-exercice';
 
 
 
 import { EnvironmentInjector } from '@angular/core';
+
 
 
 
@@ -65,6 +67,7 @@ export const routes: Routes = [
   { path: 'observables-advanced-exercice', component: ObservablesAdvancedExercice},
   { path: 'http-api-exercice', component: HttpApiExercice},
   { path: 'animal-input-exercice', component: AnimalInputExercice},
+   { path: 'task-list-exercice', component: TaskListExercice},
   // Path TP
   { path: 'component-communication-tp', component: ComponentCommunicationTp },
 

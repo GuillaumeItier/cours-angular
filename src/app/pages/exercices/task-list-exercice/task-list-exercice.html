@@ -1,0 +1,70 @@
+<div class="mx-auto max-w-xl p-4 sm:p-8">
+  <h1 class="text-center text-3xl font-bold text-primary">Liste des tâches</h1>
+  <p class="mt-3 mb-8 text-center">
+    Ajoutez, suivez et supprimez vos tâches, synchronisées en temps réel.
+  </p>
+
+  <!-- Annonces vocales : "Tâche ajoutée", "Tâche supprimée", "Statut modifié" -->
+  <p role="status" class="sr-only"></p>
+
+  <!-- Formulaire d'ajout -->
+  <form class="flex flex-col gap-3 sm:flex-row" (ngSubmit)="addTask()" novalidate>
+    <label for="new-task" class="sr-only">Nouvelle tâche</label>
+    <input
+      id="new-task"
+      name="task"
+      type="text"
+      autocomplete="off"
+      placeholder="Nouvelle tâche"
+      class="input w-full border-base-content/60 bg-base-100 placeholder:text-base-content/70 sm:flex-1"
+      [(ngModel)]="taskName"
+    />
+    <!-- À lier : [disabled]="le champ est vide" -->
+    <button type="submit" class="btn btn-neutral" [disabled]="!taskName().trim() || isSaving()">Ajouter</button>
+  </form>
+
+  <!-- États à afficher avec @if (chargement, erreur) :  -->
+  <!-- 1. L'alerte d'erreur s'affiche indépendamment au-dessus dès qu'il y a un pépin -->
+    <!-- 4. Zone réservée : petit spinner OU erreur (hauteur fixe) -->
+  <div class="mt-4 flex min-h-12 items-center justify-center">
+    @if (isSaving()) {
+      <span class="loading loading-spinner loading-sm text-primary" aria-hidden="true"></span>
+    } @else if (errorMessage()) {
+      <p role="alert" class="alert alert-error w-full py-2">{{ errorMessage() }}</p>
+    }
+  </div>
+
+  <!-- 5. Premier chargement OU liste -->
+  @if (isLoading()) {
+    <div class="mt-6 flex items-center justify-center gap-3">
+      <span class="loading loading-spinner loading-md text-primary" aria-hidden="true"></span>
+      <p>Chargement des tâches…</p>
+    </div>
+  } @else {
+    <ul class="mt-4 flex flex-col gap-3" aria-label="Liste des tâches">
+      @for (task of taskList(); track task.id) {
+        <li class="card border border-base-300 bg-base-100 shadow-md">
+          <div class="card-body flex-row flex-wrap items-center justify-between gap-3 p-4">
+            <p class="min-w-0 grow break-words text-lg">{{ task.title }}</p>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="badge font-semibold" [class]="task.status === 'completed' ? 'badge-success' : 'badge-warning'">
+                {{ task.status }}
+              </span>
+              <button type="button" class="btn btn-sm btn-info" [disabled]="isSaving()" (click)="toggleStatusTask(task)">
+                Statut<span class="sr-only"> de la tâche {{ task.title }}</span>
+              </button>
+              <button type="button" class="btn btn-sm btn-error" [disabled]="isSaving()" (click)="deleteTask(task.id)">
+                Supprimer<span class="sr-only"> la tâche {{ task.title }}</span>
+              </button>
+            </div>
+          </div>
+        </li>
+      } @empty {
+        <li class="text-center">Aucune tâche pour le moment.</li>
+      }
+    </ul>
+  }
+
+  <!-- État vide (à afficher avec @if si la liste est vide) :
+  <p class="mt-8 text-center">Aucune tâche pour le moment.</p> -->
+</div>
