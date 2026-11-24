@@ -26,10 +26,7 @@ import { AnimalInputExercice } from './pages/exercices/animal-input-exercice/ani
 // Import TP
 import { ComponentCommunicationTp } from './pages/tp/component-communication-tp/component-communication-tp';
 import { TaskListExercice } from './pages/exercices/task-list-exercice/task-list-exercice';
-
-
-
-import { EnvironmentInjector } from '@angular/core';
+import { DynamicStylingLesson } from './pages/lessons/dynamic-styling-lesson/dynamic-styling-lesson';
 
 
 
@@ -54,6 +51,7 @@ export const routes: Routes = [
   { path: 'conditional-rendering-lesson', component: ConditionalRenderingLesson},
   { path: 'list-rendering-lesson', component: ListRenderingLesson},
   { path: 'signal-lesson', component: SignalsLesson},
+  { path: 'dynamic-styling-lesson', component: DynamicStylingLesson},
   // Path Exercice
   { path: 'text-interpolation-exercice', component: TextInterpolationExercice },
   { path: 'property-binding-exercice', component: PropertyBindingExercice },
